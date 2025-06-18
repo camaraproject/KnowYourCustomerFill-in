@@ -186,7 +186,7 @@ paths:
                     houseNumberExtension: 36
                     birthdate: '1978-08-22'
                     email: abc@example.com
-                    gender: male
+                    gender: MALE
 
         "400":
           $ref: '#/components/responses/Generic400'
@@ -320,7 +320,7 @@ components:
           
         gender:
           type: string
-          description: Gender of the customer stored on the Operator's system (male/female/other).
+          description: Gender of the customer stored on the Operator's system (Male/Female/Other).
           enum:
             - MALE
             - FEMALE
