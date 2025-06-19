@@ -35,7 +35,7 @@ info:
     ### Special Scopes
 
     This API uses the following special scope kyc-fill-in:set-all which means that the API provider returns an API response as if all these scopes were specified in the scope value in the request:
-    `kyc-fill-in:phoneNumber kyc-fill-in:idDocument kyc-fill-in:name kyc-fill-in:givenName kyc-fill-in:familyName kyc-fill-in:nameKanaHankaku kyc-fill-in:nameKanaZenkaku kyc-fill-in:middleNames kyc-fill-in:familyNameAtBirth kyc-fill-in:address kyc-fill-in:streetName kyc-fill-in:streetNumber kyc-fill-in:postalCode kyc-fill-in:region kyc-fill-in:locality kyc-fill-in:country kyc-fill-in:houseNumberExtension kyc-fill-in:birthdate kyc-fill-in:email kyc-fill-in:gender`
+    `kyc-fill-in:phoneNumber kyc-fill-in:idDocument kyc-fill-in:name kyc-fill-in:givenName kyc-fill-in:familyName kyc-fill-in:nameKanaHankaku kyc-fill-in:nameKanaZenkaku kyc-fill-in:middleNames kyc-fill-in:familyNameAtBirth kyc-fill-in:address kyc-fill-in:streetName kyc-fill-in:streetNumber kyc-fill-in:postalCode kyc-fill-in:region kyc-fill-in:locality kyc-fill-in:country kyc-fill-in:houseNumberExtension kyc-fill-in:birthdate kyc-fill-in:email kyc-fill-in:gender kyc-fill-in:placeOfBirth kyc-fill-in:countryOfBirth kyc-fill-in:nationality`
 
     ## Resources and Operations overview
 
@@ -138,6 +138,12 @@ paths:
           - kyc-fill-in:email
         - openId:
           - kyc-fill-in:gender
+        - openId:
+          - kyc-fill-in:placeOfBirth
+        - openId:
+          - kyc-fill-in:countryOfBirth
+        - openId:
+          - kyc-fill-in:nationality
         
       parameters:
         - $ref: '#/components/parameters/x-correlator'
@@ -187,6 +193,9 @@ paths:
                     birthdate: '1978-08-22'
                     email: abc@example.com
                     gender: male
+                    placeOfBirth: Madrid
+                    countryOfBirth: ES
+                    nationality: ES
 
         "400":
           $ref: '#/components/responses/Generic400'
@@ -325,7 +334,19 @@ components:
             - MALE
             - FEMALE
             - OTHER
-          
+ 
+        placeOfBirth:
+          type: string
+          description: City where the customer was born.
+
+        countryOfBirth:
+          type: string
+          description: Country where the customer was born.
+
+        nationality:
+          type: string
+          description: ISO 3166-1 alpha-2 code of the customer’s nationality. In the case a customers has more than one nationality, it is supposed to be the nationality related to the ID document provided in the match request.
+         
     ErrorInfo:
       type: object
       required:
