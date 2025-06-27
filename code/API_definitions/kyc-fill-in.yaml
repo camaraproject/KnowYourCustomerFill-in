@@ -78,12 +78,12 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 
-  version: wip
-  x-camara-commonalities: 0.5
+  version: 0.4.0-rc.1
+  x-camara-commonalities: 0.6
 
 
 servers:
-  - url: '{apiRoot}/kyc-fill-in/vwip'
+  - url: '{apiRoot}/kyc-fill-in/v0.4rc1'
 
     variables:
       apiRoot:
