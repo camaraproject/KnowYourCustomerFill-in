@@ -164,6 +164,7 @@ paths:
         - $ref: '#/components/parameters/x-correlator'
 
       requestBody:
+        required: true
         content:
           application/json:
 
