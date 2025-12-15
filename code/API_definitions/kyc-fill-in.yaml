@@ -18,7 +18,7 @@ info:
 
     The following figure is the generic high-level flows of this API.
 
-    <img width="848" alt="KYC_Fill-in_flow" src="https://raw.githubusercontent.com/camaraproject/KnowYourCustomerFill-in/r1.2/documentation/API_documentation/assets/kyc-fill-in_flow.png">
+    <img width="848" alt="KYC_Fill-in_flow" src="https://raw.githubusercontent.com/camaraproject/KnowYourCustomerFill-in/r1.3/documentation/API_documentation/assets/kyc-fill-in_flow.png">
 
     Note:
 
@@ -78,7 +78,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 
-  version: wip
+  version: 0.4.1
   x-camara-commonalities: 0.6
 
 externalDocs:
@@ -86,7 +86,7 @@ externalDocs:
   url: https://github.com/camaraproject/KnowYourCustomerFill-in
 
 servers:
-  - url: '{apiRoot}/kyc-fill-in/vwip'
+  - url: '{apiRoot}/kyc-fill-in/v0.4'
 
     variables:
       apiRoot:
