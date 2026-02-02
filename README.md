@@ -41,6 +41,7 @@ Incubating API Repository to evolve and maintain the definitions and documentati
 
 _The above section is automatically synchronized by CAMARA project-administration._
 <!-- CAMARA:RELEASE-INFO:END -->
+* Note: **Releases of the KnowYourCustomerFill-in API until Spring25 are available in [KnowYourCustomer](https://github.com/camaraproject/KnowYourCustomer).**
 
 ## Contributing
 
