@@ -78,7 +78,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 
-  version: 0.4.1
+  version: wip
   x-camara-commonalities: 0.6
 
 externalDocs:
@@ -538,3 +538,4 @@ components:
                 status: 422
                 code: UNNECESSARY_IDENTIFIER
                 message: An explicit phone number has been provided when one is already associated with the access token
+
