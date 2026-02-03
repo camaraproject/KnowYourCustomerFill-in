@@ -86,7 +86,7 @@ externalDocs:
   url: https://github.com/camaraproject/KnowYourCustomerFill-in
 
 servers:
-  - url: '{apiRoot}/kyc-fill-in/v0.4'
+  - url: '{apiRoot}/kyc-fill-in/vwip'
 
     variables:
       apiRoot:
@@ -538,4 +538,5 @@ components:
                 status: 422
                 code: UNNECESSARY_IDENTIFIER
                 message: An explicit phone number has been provided when one is already associated with the access token
+
 
