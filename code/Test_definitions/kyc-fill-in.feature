@@ -1,4 +1,4 @@
-Feature: CAMARA Know Your Customer Fill-in API, v0.4.1 - Operation KYC_Fill-in
+Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
 
 # Input to be provided by the implementation to the tester
 #
@@ -13,7 +13,7 @@ Feature: CAMARA Know Your Customer Fill-in API, v0.4.1 - Operation KYC_Fill-in
 
   Background: Common KYC_Fill-in_API setup
     Given an environment at "apiRoot"
-    And the resource "/kyc-fill-in/v0.4/fill-in"
+    And the resource "/kyc-fill-in/vwip/fill-in"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
@@ -26,7 +26,7 @@ Feature: CAMARA Know Your Customer Fill-in API, v0.4.1 - Operation KYC_Fill-in
   @KYC_Fill-in_01_success_request_response
   Scenario: Validation for success fill-in request and response scenario
     Given a valid testing phone number supported by the service, identified by the access token or provided in the request body
-    And the resource "/kyc-fill-in/v0.4"
+    And the resource "/kyc-fill-in/vwip"
     When the HTTP "POST" request "KYC_Fill-in" is sent
     Then the response status code is 200
     And the response header "Content-Type" is "application/json"
