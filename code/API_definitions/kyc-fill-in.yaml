@@ -538,5 +538,3 @@ components:
                 status: 422
                 code: UNNECESSARY_IDENTIFIER
                 message: An explicit phone number has been provided when one is already associated with the access token
-
-
