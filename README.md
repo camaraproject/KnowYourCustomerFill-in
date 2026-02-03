@@ -22,16 +22,26 @@ Incubating API Repository to evolve and maintain the definitions and documentati
 * Started: September 2023 (within [KnowYourCustomer](https://github.com/camaraproject/KnowYourCustomer))
 * Incubating stage since: February 2025
 
+<!-- CAMARA:RELEASE-INFO:START -->
+<!-- The following section is automatically maintained by the CAMARA project-administration tooling: https://github.com/camaraproject/project-administration -->
+
 ## Release Information
 
-* Note: Please be aware that the project will have updates to the main branch. There are no compatibility guarantees associated with code in any branch, including main, until a new release is created. For example, changes may be reverted before a release is created. For best results, use the latest available release.
-* **NEW: The latest public release of CAMARA KYC Fill-in is [r1.3](https://github.com/camaraproject/KnowYourCustomerFill-in/tree/r1.3)**. The Release Tag is [r1.3](https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r1.3).
-* API definition **with inline documentation**:
-  - OpenAPI [YAML spec file](https://github.com/camaraproject/KnowYourCustomerFill-in/blob/r1.3/code/API_definitions/kyc-fill-in.yaml)
-  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/KnowYourCustomerFill-in/r1.3/code/API_definitions/kyc-fill-in.yaml&nocors)
-  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/KnowYourCustomerFill-in/r1.3/code/API_definitions/kyc-fill-in.yaml&nocors)
-* **Releases of the KnowYourCustomerFill-in API until Spring25 are available in [KnowYourCustomer](https://github.com/camaraproject/KnowYourCustomer).**
+> [!NOTE]
+> Please be aware that the project will have frequent updates to the main branch. There are no compatibility guarantees associated with code in any branch, including main, until a new release is created. For example, changes may be reverted before a release is created. **For best results, use the latest available release**.
+
+* **NEW**: The latest public release is [r1.3](https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r1.3) (Fall25), with the following API versions:
+  * **kyc-fill-in v0.4.1**
+  [[YAML]](https://github.com/camaraproject/KnowYourCustomerFill-in/blob/r1.3/code/API_definitions/kyc-fill-in.yaml)
+  [[ReDoc]](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/KnowYourCustomerFill-in/r1.3/code/API_definitions/kyc-fill-in.yaml&nocors)
+  [[Swagger]](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/KnowYourCustomerFill-in/r1.3/code/API_definitions/kyc-fill-in.yaml)
+* The latest public release is always available here: https://github.com/camaraproject/KnowYourCustomerFill-in/releases/latest
+* Other releases of this repository are available in https://github.com/camaraproject/KnowYourCustomerFill-in/releases
 * For changes see [CHANGELOG.md](https://github.com/camaraproject/KnowYourCustomerFill-in/blob/main/CHANGELOG.md)
+
+_The above section is automatically synchronized by CAMARA project-administration._
+<!-- CAMARA:RELEASE-INFO:END -->
+* Note: **Releases of the KnowYourCustomerFill-in API until Spring25 are available in [KnowYourCustomer](https://github.com/camaraproject/KnowYourCustomer).**
 
 ## Contributing
 
