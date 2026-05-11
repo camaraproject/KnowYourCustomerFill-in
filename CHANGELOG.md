@@ -1,3 +1,6 @@
+> Starting with release automation, new release changelogs are maintained
+> in the [CHANGELOG/](CHANGELOG/) directory with per-cycle files.
+
 # Changelog Know Your Customer Fill-in
 
 ## Table of Contents
