@@ -186,7 +186,7 @@ paths:
           description: OK
           headers:
             x-correlator:
-              $ref: "../common/CAMARA_common.yaml#/components/headers/X-Correlator"
+              $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
 
           content:
             application/json:
