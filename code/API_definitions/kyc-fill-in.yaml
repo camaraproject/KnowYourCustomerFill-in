@@ -157,7 +157,7 @@ paths:
             - kyc-fill-in:nationality
 
       parameters:
-        - $ref: '#/components/parameters/x-correlator'
+        - $ref: '../common/CAMARA_common.yaml#/components/parameters/x-correlator'
 
       requestBody:
         required: true
@@ -176,7 +176,7 @@ paths:
           description: OK
           headers:
             x-correlator:
-              $ref: "#/components/headers/X-Correlator"
+              $ref: "../common/CAMARA_common.yaml#/components/headers/X-Correlator"
 
           content:
             application/json:
@@ -212,36 +212,21 @@ paths:
                     nationality: ES
 
         "400":
-          $ref: '#/components/responses/Generic400'
+          $ref: '../common/CAMARA_common.yaml#/components/responses/Generic400'
         "401":
-          $ref: '#/components/responses/Generic401'
+          $ref: '../common/CAMARA_common.yaml#/components/responses/Generic401'
         "403":
-          $ref: '#/components/responses/Generic403'
+          $ref: '../common/CAMARA_common.yaml#/components/responses/Generic403'
         "404":
-          $ref: '#/components/responses/Generic404'
+          $ref: '../common/CAMARA_common.yaml#/components/responses/Generic404'
         "422":
-          $ref: '#/components/responses/Generic422'
+          $ref: '../common/CAMARA_common.yaml#/components/responses/Generic422'
 
 components:
   securitySchemes:
     openId:
       type: openIdConnect
       openIdConnectUrl: https://example.com/.well-known/openid-configuration
-
-  headers:
-    X-Correlator:
-      description: Correlation id for the different services
-      required: false
-      schema:
-        $ref: "#/components/schemas/XCorrelator"
-
-  parameters:
-    x-correlator:
-      name: x-correlator
-      in: header
-      description: Correlation id for the different services
-      schema:
-        $ref: "#/components/schemas/XCorrelator"
 
   schemas:
     KYC_FillinRequest:
@@ -258,10 +243,7 @@ components:
       properties:
 
         phoneNumber:
-          type: string
-          description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
-          pattern: '^\+[1-9][0-9]{4,14}$'
-          example: "+123456789"
+          $ref: "../common/CAMARA_common.yaml#/components/schemas/PhoneNumber"
 
         idDocument:
           type: string
@@ -366,171 +348,3 @@ components:
         nationality:
           type: string
           description: ISO 3166-1 alpha-2 code of the customer’s nationality. In the case a customer has more than one nationality, it is supposed to be the nationality related to the ID document provided in the match request.
-
-    ErrorInfo:
-      type: object
-      required:
-        - status
-        - code
-        - message
-      properties:
-        status:
-          type: integer
-          description: HTTP response status code
-        code:
-          type: string
-          description: A human-readable code to describe the error
-        message:
-          type: string
-          description: A human-readable description of what the event represents
-
-    XCorrelator:
-      type: string
-      pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
-      example: "b4333c46-49c0-4f62-80d7-f0ef930f1c46"
-
-  responses:
-    Generic400:
-      description: Bad Request
-      headers:
-        x-correlator:
-          $ref: "#/components/headers/X-Correlator"
-      content:
-        application/json:
-          schema:
-            allOf:
-              - $ref: "#/components/schemas/ErrorInfo"
-              - type: object
-                properties:
-                  status:
-                    enum:
-                      - 400
-                  code:
-                    enum:
-                      - INVALID_ARGUMENT
-          examples:
-            GENERIC_400_INVALID_ARGUMENT:
-              description: Invalid Argument. Generic Syntax Exception
-              value:
-                status: 400
-                code: INVALID_ARGUMENT
-                message: Client specified an invalid argument, request body or query param.
-
-    Generic401:
-      description: Unauthorized
-      headers:
-        x-correlator:
-          $ref: "#/components/headers/X-Correlator"
-      content:
-        application/json:
-          schema:
-            allOf:
-              - $ref: "#/components/schemas/ErrorInfo"
-              - type: object
-                properties:
-                  status:
-                    enum:
-                      - 401
-                  code:
-                    enum:
-                      - UNAUTHENTICATED
-          examples:
-            GENERIC_401_UNAUTHENTICATED:
-              description: Request cannot be authenticated and a new authentication is required
-              value:
-                status: 401
-                code: UNAUTHENTICATED
-                message: Request not authenticated due to missing, invalid, or expired credentials. A new authentication is required.
-
-    Generic403:
-      description: Forbidden
-      headers:
-        x-correlator:
-          $ref: "#/components/headers/X-Correlator"
-      content:
-        application/json:
-          schema:
-            allOf:
-              - $ref: "#/components/schemas/ErrorInfo"
-              - type: object
-                properties:
-                  status:
-                    enum:
-                      - 403
-                  code:
-                    enum:
-                      - PERMISSION_DENIED
-
-          examples:
-            GENERIC_403_PERMISSION_DENIED:
-              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
-              value:
-                status: 403
-                code: PERMISSION_DENIED
-                message: Client does not have sufficient permissions to perform this action.
-
-    Generic404:
-      description: Not found
-      headers:
-        x-correlator:
-          $ref: "#/components/headers/X-Correlator"
-      content:
-        application/json:
-          schema:
-            allOf:
-              - $ref: "#/components/schemas/ErrorInfo"
-              - type: object
-                properties:
-                  status:
-                    enum:
-                      - 404
-                  code:
-                    enum:
-                      - IDENTIFIER_NOT_FOUND
-          examples:
-            GENERIC_404_IDENTIFIER_NOT_FOUND:
-              description: The phone number is not associated with a CSP customer account
-              value:
-                status: 404
-                code: IDENTIFIER_NOT_FOUND
-                message: The phone number provided is not associated with a customer account
-
-    Generic422:
-      description: Unprocessable Content
-      headers:
-        x-correlator:
-          $ref: "#/components/headers/X-Correlator"
-      content:
-        application/json:
-          schema:
-            allOf:
-              - $ref: "#/components/schemas/ErrorInfo"
-              - type: object
-                properties:
-                  status:
-                    enum:
-                      - 422
-                  code:
-                    enum:
-                      - SERVICE_NOT_APPLICABLE
-                      - MISSING_IDENTIFIER
-                      - UNNECESSARY_IDENTIFIER
-          examples:
-            GENERIC_422_SERVICE_NOT_APPLICABLE:
-              description: Service is not applicable for the provided phone number
-              value:
-                status: 422
-                code: SERVICE_NOT_APPLICABLE
-                message: The service is not applicable for the provided phone number
-            GENERIC_422_MISSING_IDENTIFIER:
-              description: No phone number has been provided either explicitly or associated with the access token
-              value:
-                status: 422
-                code: MISSING_IDENTIFIER
-                message: No phone number has been provided
-            GENERIC_422_UNNECESSARY_IDENTIFIER:
-              description: An explicit phone number has been provided when one is already associated with the access token
-              value:
-                status: 422
-                code: UNNECESSARY_IDENTIFIER
-                message: An explicit phone number has been provided when one is already associated with the access token
