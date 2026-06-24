@@ -244,12 +244,14 @@ components:
   schemas:
     KYC_FillinRequest:
       type: object
+      description: KYC Fill-In request body
       properties:
         phoneNumber:
           $ref: "../common/CAMARA_common.yaml#/components/schemas/PhoneNumber"
 
     KYC_FillinResponse:
       type: object
+      description: KYC Fill-In response body
       properties:
 
         phoneNumber:
