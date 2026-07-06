@@ -271,7 +271,7 @@ components:
         idDocumentExpiryDate:
           type: string
           format: date
-          maxLength: 16
+          maxLength: 10
           description: Expiration date of the identity document (ISO 8601).
 
         name:
@@ -352,7 +352,7 @@ components:
         birthdate:
           type: string
           format: date
-          maxLength: 64
+          maxLength: 10
           description: Birthdate of the customer, in ISO 8601 calendar date format (YYYY-MM-DD), stored on the Operator's system.
 
         email:
