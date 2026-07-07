@@ -350,8 +350,12 @@ components:
           description: Locality of the customer's address, stored on the Operator's system.
 
         country:
-          $ref: '#/components/schemas/Iso3166Alpha2'
-          description: Country of the customer's address stored on the Operator's system. Format ISO 3166-1 alpha-2.
+          type: string
+          description: Country of the customer's address. Format ISO 3166-1 alpha-2.
+          pattern: ^[A-Z]{2}$
+          minLength: 2
+          maxLength: 2
+          example: "JP"
 
         houseNumberExtension:
           type: string
@@ -385,8 +389,12 @@ components:
           description: City where the customer was born.
 
         countryOfBirth:
-          $ref: '#/components/schemas/Iso3166Alpha2'
+          type: string
           description: Country where the customer was born. Format ISO 3166-1 alpha-2.
+          pattern: ^[A-Z]{2}$
+          minLength: 2
+          maxLength: 2
+          example: "JP"
 
         nationality:
           type: string
