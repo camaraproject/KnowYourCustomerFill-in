@@ -391,4 +391,3 @@ components:
         nationality:
           $ref: '#/components/schemas/Iso3166Alpha2'
           description: ISO 3166-1 alpha-2 code of the customer’s nationality. In the case a customer has more than one nationality, it is supposed to be the nationality related to the ID document provided in the match request.
-
