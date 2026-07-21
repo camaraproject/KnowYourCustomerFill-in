@@ -352,7 +352,7 @@ components:
         country:
           type: string
           description: Country of the customer's address. Format ISO 3166-1 alpha-2.
-          pattern: ^[A-Z]{2}$
+          pattern: ^[A-Za-z]{2}$
           minLength: 2
           maxLength: 2
           example: "JP"
@@ -391,7 +391,7 @@ components:
         countryOfBirth:
           type: string
           description: Country where the customer was born. Format ISO 3166-1 alpha-2.
-          pattern: ^[A-Z]{2}$
+          pattern: ^[A-Za-z]{2}$
           minLength: 2
           maxLength: 2
           example: "JP"
@@ -399,7 +399,7 @@ components:
         nationality:
           type: string
           description: ISO 3166-1 alpha-2 code of the customer’s nationality. In the case a customer has more than one nationality, it is supposed to be the nationality related to the ID document provided in the match request.
-          pattern: ^[A-Z]{2}$
+          pattern: ^[A-Za-z]{2}$
           minLength: 2
           maxLength: 2
           example: "JP"
