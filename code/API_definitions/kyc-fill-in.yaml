@@ -32,7 +32,7 @@ info:
 
     This API uses the following special scope `kyc-fill-in:set-all` which means that the API provider returns an API response as if all these scopes were specified in the scope value in the request:
 
-    `kyc-fill-in:phoneNumber kyc-fill-in:idDocument kyc-fill-in:idDocumentType kyc-fill-in:idDocumentExpiryDate kyc-fill-in:name kyc-fill-in:givenName kyc-fill-in:familyName kyc-fill-in:nameKanaHankaku kyc-fill-in:nameKanaZenkaku kyc-fill-in:middleNames kyc-fill-in:familyNameAtBirth kyc-fill-in:address kyc-fill-in:streetName kyc-fill-in:streetNumber kyc-fill-in:postalCode kyc-fill-in:region kyc-fill-in:locality kyc-fill-in:country kyc-fill-in:houseNumberExtension kyc-fill-in:birthdate kyc-fill-in:email kyc-fill-in:gender kyc-fill-in:cityOfBirth kyc-fill-in:countryOfBirth kyc-fill-in:nationality`
+    `kyc-fill-in:phoneNumber kyc-fill-in:idDocument kyc-fill-in:idDocumentType kyc-fill-in:idDocumentExpiryDate kyc-fill-in:bankAccountNumber kyc-fill-in:name kyc-fill-in:givenName kyc-fill-in:familyName kyc-fill-in:nameKanaHankaku kyc-fill-in:nameKanaZenkaku kyc-fill-in:middleNames kyc-fill-in:familyNameAtBirth kyc-fill-in:address kyc-fill-in:streetName kyc-fill-in:streetNumber kyc-fill-in:postalCode kyc-fill-in:region kyc-fill-in:locality kyc-fill-in:country kyc-fill-in:houseNumberExtension kyc-fill-in:birthdate kyc-fill-in:email kyc-fill-in:gender kyc-fill-in:cityOfBirth kyc-fill-in:countryOfBirth kyc-fill-in:nationality`
 
     ## Resources and Operations overview
 
@@ -126,6 +126,8 @@ paths:
         - openId:
             - kyc-fill-in:idDocumentExpiryDate
         - openId:
+            - kyc-fill-in:bankAccountNumber
+        - openId:
             - kyc-fill-in:name
         - openId:
             - kyc-fill-in:givenName
@@ -201,6 +203,7 @@ paths:
                     idDocument: 66666666q
                     idDocumentType: passport
                     idDocumentExpiryDate: '2027-07-12'
+                    bankAccountNumber: IBAN:NL59ABNA0123456789
                     name: Federica Sanchez Arjona
                     givenName: Federica
                     familyName: Sanchez Arjona
@@ -282,6 +285,12 @@ components:
           format: date
           maxLength: 10
           description: Expiration date of the identity document (ISO 8601).
+
+        bankAccountNumber:
+          type: string
+          maxLength: 50
+          pattern: '^[A-Z]+:[A-Za-z0-9]+$'
+          description: The bank account number maintained by the API Provider (Telco operator) to collect monthly subscription payments from the contract owner.  The string is formatted as `PREFIX:VALUE`. The uppercase prefix before the colon (':') indicates the type of account number (e.g., IBAN, SWIFT), and the alphanumeric string after the colon represents the actual bank account number.
 
         name:
           type: string
