@@ -112,7 +112,7 @@ paths:
       description: |
         Provides information related to a customer identity stored the account data bound to the customer's phone number.
 
-      operationId: KYC_Fill-in
+      operationId: kycFillin
 
       security:
         - openId:
