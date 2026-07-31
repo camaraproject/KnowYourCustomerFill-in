@@ -112,7 +112,7 @@ paths:
       description: |
         Provides information related to a customer identity stored the account data bound to the customer's phone number.
 
-      operationId: KYC_Fill-in
+      operationId: kycFillin
 
       security:
         - openId:
@@ -179,7 +179,7 @@ paths:
           application/json:
 
             schema:
-              $ref: '#/components/schemas/KYC_FillinRequest'
+              $ref: '#/components/schemas/KycFillinRequest'
             examples:
               KYC_FillInBodyExample:
                 value:
@@ -195,7 +195,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/KYC_FillinResponse'
+                $ref: '#/components/schemas/KycFillinResponse'
               examples:
                 KYC_Fillin200Example:
                   value:
@@ -254,14 +254,14 @@ components:
       maxLength: 2
       example: "DE"
 
-    KYC_FillinRequest:
+    KycFillinRequest:
       type: object
       description: KYC Fill-In request body
       properties:
         phoneNumber:
           $ref: "../common/CAMARA_common.yaml#/components/schemas/PhoneNumber"
 
-    KYC_FillinResponse:
+    KycFillinResponse:
       type: object
       description: KYC Fill-In response body
       properties:
@@ -358,9 +358,9 @@ components:
           description: Locality of the customer's address, stored on the Operator's system.
 
         country:
+          description: Country of the customer's address. Format ISO 3166-1 alpha-2
           allOf:
             - $ref: '#/components/schemas/Iso3166Alpha2'
-            - description: Country of the customer's address. Format ISO 3166-1 alpha-2
 
         houseNumberExtension:
           type: string
@@ -394,14 +394,14 @@ components:
           description: City where the customer was born.
 
         countryOfBirth:
+          description: Country where the customer was born. Format ISO 3166-1 alpha-2.
           allOf:
             - $ref: '#/components/schemas/Iso3166Alpha2'
-            - description: Country where the customer was born. Format ISO 3166-1 alpha-2.
 
         nationality:
+          description: ISO 3166-1 alpha-2 code of the customer’s nationality. In the case a customer has more than one nationality, it is supposed to be the nationality related to the ID document provided in the match request.
           allOf:
             - $ref: '#/components/schemas/Iso3166Alpha2'
-            - description: ISO 3166-1 alpha-2 code of the customer’s nationality. In the case a customer has more than one nationality, it is supposed to be the nationality related to the ID document provided in the match request.
 
   responses:
     Generic400:
