@@ -1,7 +1,6 @@
 openapi: 3.0.3
 info:
   title: Know Your Customer Fill-in
-
   description: |
 
     This API provides the customer with the ability request and receive the information for a particular user, which on file (and verified) by the user's Operator in their own KYC records, in order for the SP to confirm the accuracy of the information and provide a specific service to the user.
@@ -79,30 +78,23 @@ info:
 
     This API rejects requests with JSON request bodies that contain properties not declared in this specification, at any nesting level. Unknown properties result in a `400 INVALID_ARGUMENT` response.
     <!-- CAMARA:MANDATORY:request-body-strictness:END -->
-
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-
-  version: wip
-  x-camara-commonalities: 0.6
-
-externalDocs:
-  description: Product documentation at CAMARA.
-  url: https://github.com/camaraproject/KnowYourCustomerFill-in
-
+  version: 0.5.0-rc.1
+  x-camara-commonalities: 0.8.0
 servers:
-  - url: '{apiRoot}/kyc-fill-in/vwip'
-
+  - url: '{apiRoot}/kyc-fill-in/v0.5rc1'
     variables:
       apiRoot:
         default: http://localhost:9091
         description: API root, defined by the service provider, e.g. `api.example.com` or `api.example.com/somepath`
-
 tags:
   - name: Fill-in
     description: Operations to provide information related to a customer identity stored the account data bound to the customer's phone number.
-
+externalDocs:
+  description: Product documentation at CAMARA.
+  url: https://github.com/camaraproject/KnowYourCustomerFill-in
 paths:
   /fill-in:
     post:
@@ -111,9 +103,7 @@ paths:
       summary: Providing information related to a customer identity stored the account data bound to the customer's phone number.
       description: |
         Provides information related to a customer identity stored the account data bound to the customer's phone number.
-
       operationId: kycFillin
-
       security:
         - openId:
             - kyc-fill-in:set-all
@@ -169,29 +159,24 @@ paths:
             - kyc-fill-in:countryOfBirth
         - openId:
             - kyc-fill-in:nationality
-
       parameters:
-        - $ref: '../common/CAMARA_common.yaml#/components/parameters/x-correlator'
-
+        - $ref: '#/components/parameters/x-correlator'
       requestBody:
         required: true
         content:
           application/json:
-
             schema:
               $ref: '#/components/schemas/KycFillinRequest'
             examples:
               KYC_FillInBodyExample:
                 value:
-                  {"phoneNumber": "+34629255833"}
-
+                  phoneNumber: '+34629255833'
       responses:
         '200':
           description: OK
           headers:
             x-correlator:
-              $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
-
+              $ref: '#/components/headers/x-correlator'
           content:
             application/json:
               schema:
@@ -225,25 +210,22 @@ paths:
                     cityOfBirth: Madrid
                     countryOfBirth: ES
                     nationality: ES
-
-        "400":
+        '400':
           $ref: '#/components/responses/Generic400'
-        "401":
+        '401':
           $ref: '#/components/responses/Generic401'
-        "403":
+        '403':
           $ref: '#/components/responses/Generic403'
-        "404":
+        '404':
           $ref: '#/components/responses/Generic404'
-        "422":
+        '422':
           $ref: '#/components/responses/Generic422'
-
 components:
   securitySchemes:
     openId:
       description: OpenID Connect authentication
       type: openIdConnect
       openIdConnectUrl: https://example.com/.well-known/openid-configuration
-
   schemas:
     Iso3166Alpha2:
       type: string
@@ -252,133 +234,115 @@ components:
       pattern: ^[A-Za-z]{2}$
       minLength: 2
       maxLength: 2
-      example: "DE"
-
+      example: DE
     KycFillinRequest:
       type: object
       description: KYC Fill-In request body
       properties:
         phoneNumber:
-          $ref: "../common/CAMARA_common.yaml#/components/schemas/PhoneNumber"
-
+          $ref: '#/components/schemas/PhoneNumber'
     KycFillinResponse:
       type: object
       description: KYC Fill-In response body
       properties:
-
         phoneNumber:
-          $ref: "../common/CAMARA_common.yaml#/components/schemas/PhoneNumber"
-
+          $ref: '#/components/schemas/PhoneNumber'
         idDocument:
           type: string
           maxLength: 50
           description: Id number associated to the id_document of the customer stored on the Operator's system.
-
         idDocumentType:
           type: string
           maxLength: 50
-          enum: [passport, national_id_card, residence_permit, diplomatic_id, driver_licence, social_security_id, other]
+          enum:
+            - passport
+            - national_id_card
+            - residence_permit
+            - diplomatic_id
+            - driver_licence
+            - social_security_id
+            - other
           description: Type of the official identity document provided.
-
         idDocumentExpiryDate:
           type: string
           format: date
           maxLength: 10
           description: Expiration date of the identity document (ISO 8601).
-
         bankAccountNumber:
           type: string
           maxLength: 50
-          pattern: '^[A-Z]+:[A-Za-z0-9]+$'
+          pattern: ^[A-Z]+:[A-Za-z0-9]+$
           description: The bank account number maintained by the API Provider (Telco operator) to collect monthly subscription payments from the contract owner. The string is formatted as `PREFIX:VALUE`. The uppercase prefix before the colon (':') indicates the type of account number (e.g., IBAN, SWIFT), and the alphanumeric string after the colon represents the actual bank account number.
-
         name:
           type: string
           maxLength: 256
           description: Complete name of the customer stored on the Operator's system.  It is usually composed of first/given name and last/family/sur- name in a country.  Depending on the country, the order of first/give name and last/family/sur- name varies, and middle name could be included.  It can use givenName, middleNames, familyName and/or familyNameAtBirth. For example, in ESP, name+familyName; in NLD, it can be name+middleNames+familyName or name+middleNames+familyNameAtBirth, etc.
-
         givenName:
           type: string
           maxLength: 100
           description: First/given name or compound first/given name of the customer on the Operator's system.
-
         familyName:
           type: string
           maxLength: 150
           description: Last name, family name, or surname of the customer stored on the Operator's system.
-
         nameKanaHankaku:
           type: string
           maxLength: 256
           description: Complete name of the customer in Hankaku-Kana format (reading of name) for Japan, stored on the Operator's system.
-
         nameKanaZenkaku:
           type: string
           maxLength: 256
           description: Complete name of the customer in Zenkaku-Kana format (reading of name) for Japan, stored on the Operator's system.
-
         middleNames:
           type: string
           maxLength: 100
           description: Middle name/s of the customer stored on the Operator's system.
-
         familyNameAtBirth:
           type: string
           maxLength: 150
           description: Last/family/sur- name at birth of the customer stored on the Operator's system.
-
         address:
           type: string
           maxLength: 256
           description: Complete address of the customer stored on the Operator's system.  For some countries, it is built following the usual concatenation of parameters in a country, but for other countries, this is not the case.  For some countries, it can use streetName, streetNumber and/or houseNumberExtension. For example, in ESP, streetName+streetNumber; in NLD, it can be streetName+streetNumber or streetName+streetNumber+houseNumberExtension.
-
         streetName:
           type: string
           maxLength: 150
           description: Name of the street of the customer's address on the Operator's system.  It should not include the type of the street.
-
         streetNumber:
           type: string
           maxLength: 20
           description: The street number of the customer's address on the Operator's system.  Number identifying a specific property on the 'streetName'.
-
         postalCode:
           type: string
           maxLength: 20
           description: The postal code or Zip code of the customer's address, stored on the Operator's system.
-
         region:
           type: string
           maxLength: 100
           description: Region/prefecture of the customer's address, stored on the Operator's system.
-
         locality:
           type: string
           maxLength: 100
           description: Locality of the customer's address, stored on the Operator's system.
-
         country:
           description: Country of the customer's address. Format ISO 3166-1 alpha-2
           allOf:
             - $ref: '#/components/schemas/Iso3166Alpha2'
-
         houseNumberExtension:
           type: string
           maxLength: 20
           description: House number extension of the customer stored on the Operator's system.  Specific identifier of the house needed depending on the property type. For example, number of apartment in an apartment building.
-
         birthdate:
           type: string
           format: date
           maxLength: 10
           description: Birthdate of the customer, in ISO 8601 calendar date format (YYYY-MM-DD), stored on the Operator's system.
-
         email:
           type: string
           format: email
           maxLength: 254
           description: Email address of the customer in the RFC specified format (local-part@domain), stored on the Operator's system.
-
         gender:
           type: string
           maxLength: 6
@@ -387,33 +351,63 @@ components:
             - MALE
             - FEMALE
             - OTHER
-
         cityOfBirth:
           type: string
           maxLength: 100
           description: City where the customer was born.
-
         countryOfBirth:
           description: Country where the customer was born. Format ISO 3166-1 alpha-2.
           allOf:
             - $ref: '#/components/schemas/Iso3166Alpha2'
-
         nationality:
           description: ISO 3166-1 alpha-2 code of the customer’s nationality. In the case a customer has more than one nationality, it is supposed to be the nationality related to the ID document provided in the match request.
           allOf:
             - $ref: '#/components/schemas/Iso3166Alpha2'
-
+    XCorrelator:
+      type: string
+      description: Correlator string, UUID format recommended but any string matching the pattern can be used
+      pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
+      maxLength: 256
+      example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
+    PhoneNumber:
+      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
+      type: string
+      pattern: ^\+[1-9][0-9]{4,14}$
+      maxLength: 16
+      example: '+123456789'
+    ErrorInfo:
+      type: object
+      description: A structured error response providing details about a failed request, including the HTTP status code, an error code, and a human-readable message
+      required:
+        - status
+        - code
+        - message
+      properties:
+        status:
+          type: integer
+          format: int32
+          minimum: 100
+          maximum: 599
+          description: HTTP response status code
+        code:
+          type: string
+          maxLength: 96
+          description: A human-readable code to describe the error
+        message:
+          type: string
+          maxLength: 512
+          description: A human-readable description of what the event represents
   responses:
     Generic400:
       description: Bad Request
       headers:
         x-correlator:
-          $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
+          $ref: '#/components/headers/x-correlator'
       content:
         application/json:
           schema:
             allOf:
-              - $ref: "../common/CAMARA_common.yaml#/components/schemas/ErrorInfo"
+              - $ref: '#/components/schemas/ErrorInfo'
               - type: object
                 properties:
                   status:
@@ -429,17 +423,16 @@ components:
                 status: 400
                 code: INVALID_ARGUMENT
                 message: Client specified an invalid argument, request body or query param.
-
     Generic401:
       description: Unauthorized
       headers:
         x-correlator:
-          $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
+          $ref: '#/components/headers/x-correlator'
       content:
         application/json:
           schema:
             allOf:
-              - $ref: "../common/CAMARA_common.yaml#/components/schemas/ErrorInfo"
+              - $ref: '#/components/schemas/ErrorInfo'
               - type: object
                 properties:
                   status:
@@ -455,17 +448,16 @@ components:
                 status: 401
                 code: UNAUTHENTICATED
                 message: Request not authenticated due to missing, invalid, or expired credentials. A new authentication is required.
-
     Generic403:
       description: Forbidden
       headers:
         x-correlator:
-          $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
+          $ref: '#/components/headers/x-correlator'
       content:
         application/json:
           schema:
             allOf:
-              - $ref: "../common/CAMARA_common.yaml#/components/schemas/ErrorInfo"
+              - $ref: '#/components/schemas/ErrorInfo'
               - type: object
                 properties:
                   status:
@@ -474,7 +466,6 @@ components:
                   code:
                     enum:
                       - PERMISSION_DENIED
-
           examples:
             GENERIC_403_PERMISSION_DENIED:
               description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
@@ -482,17 +473,16 @@ components:
                 status: 403
                 code: PERMISSION_DENIED
                 message: Client does not have sufficient permissions to perform this action.
-
     Generic404:
       description: Not found
       headers:
         x-correlator:
-          $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
+          $ref: '#/components/headers/x-correlator'
       content:
         application/json:
           schema:
             allOf:
-              - $ref: "../common/CAMARA_common.yaml#/components/schemas/ErrorInfo"
+              - $ref: '#/components/schemas/ErrorInfo'
               - type: object
                 properties:
                   status:
@@ -508,17 +498,16 @@ components:
                 status: 404
                 code: IDENTIFIER_NOT_FOUND
                 message: The phone number provided is not associated with a customer account
-
     Generic422:
       description: Unprocessable Content
       headers:
         x-correlator:
-          $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
+          $ref: '#/components/headers/x-correlator'
       content:
         application/json:
           schema:
             allOf:
-              - $ref: "../common/CAMARA_common.yaml#/components/schemas/ErrorInfo"
+              - $ref: '#/components/schemas/ErrorInfo'
               - type: object
                 properties:
                   status:
@@ -548,3 +537,15 @@ components:
                 status: 422
                 code: UNNECESSARY_IDENTIFIER
                 message: An explicit phone number has been provided when one is already associated with the access token
+  parameters:
+    x-correlator:
+      name: x-correlator
+      in: header
+      description: Correlation id for the different services
+      schema:
+        $ref: '#/components/schemas/XCorrelator'
+  headers:
+    x-correlator:
+      description: Correlation id for the different services
+      schema:
+        $ref: '#/components/schemas/XCorrelator'
