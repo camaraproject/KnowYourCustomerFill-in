@@ -290,7 +290,7 @@ components:
           type: string
           maxLength: 50
           pattern: '^[A-Z]+:[A-Za-z0-9]+$'
-          description: The bank account number maintained by the API Provider (Telco operator) to collect monthly subscription payments from the contract owner.  The string is formatted as `PREFIX:VALUE`. The uppercase prefix before the colon (':') indicates the type of account number (e.g., IBAN, SWIFT), and the alphanumeric string after the colon represents the actual bank account number.
+          description: The bank account number maintained by the API Provider (Telco operator) to collect monthly subscription payments from the contract owner. The string is formatted as `PREFIX:VALUE`. The uppercase prefix before the colon (':') indicates the type of account number (e.g., IBAN, SWIFT), and the alphanumeric string after the colon represents the actual bank account number.
 
         name:
           type: string
