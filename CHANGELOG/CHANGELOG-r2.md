@@ -70,11 +70,12 @@ Changes documented below are compared to version 0.4.1.
 
 ### Added
 
-* N/A
+* Add bankAccountNumber as an optional property to KYC Fill-in by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/61
 
 ### Changed
 
-* N/A
+* Commonalities 8.0.0 alignment and fix validation warnings by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/57
+* [KYC Fill-in] Another update to fix validation warnings by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/59
 
 ### Fixed
 
@@ -82,7 +83,7 @@ Changes documented below are compared to version 0.4.1.
 
 ### Removed
 
-* N/A
+* Remove flows image from yaml file by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/46
 
 **Full Changelog**: https://github.com/camaraproject/KnowYourCustomerFill-in/compare/r1.3...r2.1
 
