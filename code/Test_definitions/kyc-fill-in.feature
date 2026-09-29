@@ -134,6 +134,17 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     And the response property "$.code" is "PERMISSION_DENIED"
     And the response property "$.message" contains a user friendly text
 
+  # Generic 429 errors
+
+  @KYC_Fill-in_429.1_too_many_requests
+  Scenario: Error when the server is reached due to rate or spike arrest limits
+    Given the number of endpoints calls reached the API provider's rate limit
+    When the HTTP "POST" request is sent
+    Then the response status code is 429
+    And the response property "$.status" is 429
+    And the response property "$.code" is "TOO_MANY_REQUESTS"
+    And the response property "$.message" contains a user friendly text
+
     # Error scenarios for management of input parameter phoneNumber
 
   @KYC_Fill_C02.01_phone_number_not_schema_compliant
