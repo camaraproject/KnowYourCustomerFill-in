@@ -23,7 +23,7 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     # Happy path scenarios for fill-in operation
     ############################################
 
-  @kycFillin_01_success_request_response
+  @kyc-fill-in_01_success_request_response
   Scenario: Validation for success fill-in request and response scenario
     Given a valid testing phone number supported by the service, identified by the access token or provided in the request body
     And the resource "/kyc-fill-in/vwip"
@@ -33,7 +33,7 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     And the response header "x-correlator" has same value as the request header "x-correlator"
     And the response body complies with the OAS schema at "/components/schemas/KYC_FillinResponse"
 
-  @kycFillin_02_success_request_set-all_scope
+  @kyc-fill-in_02_success_request_set-all_scope
   Scenario: Validate successful response when the access token has the "kyc-fill-in:set-all" scope
     Given a valid testing phone number supported by the service, identified by the access token or provided in the request body
     And the header "Authorization" is set to a valid access token with the "kyc-fill-in:set-all" scope
@@ -44,7 +44,7 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     And the response body complies with the OAS schema at "/components/schemas/KYC_FillinResponse"
     And the response body contains all the available properties defined in the schema
 
-  @kycFillin-in_03_success_request_individual_scopes
+  @kyc-fill-in-in_03_success_request_individual_scopes
   Scenario: Validate successful response when the access token has individual scopes
     Given a valid testing phone number supported by the service, identified by the access token or provided in the request body
     And the header "Authorization" is set to a valid access token
