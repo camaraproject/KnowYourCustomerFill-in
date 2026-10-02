@@ -16,7 +16,7 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     And the resource "/kyc-fill-in/vwip/fill-in"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
-    And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
+    And the header "x-correlator" complies with the schema at "../common/CAMARA_common.yaml#/components/headers/x-correlator"
     And the request body is set by default to a request body compliant with the schema
 
     ############################################
