@@ -34,6 +34,10 @@ info:
 
     `kyc-fill-in:phoneNumber kyc-fill-in:idDocument kyc-fill-in:idDocumentType kyc-fill-in:idDocumentExpiryDate kyc-fill-in:bankAccountNumber kyc-fill-in:name kyc-fill-in:givenName kyc-fill-in:familyName kyc-fill-in:nameKanaHankaku kyc-fill-in:nameKanaZenkaku kyc-fill-in:middleNames kyc-fill-in:familyNameAtBirth kyc-fill-in:address kyc-fill-in:streetName kyc-fill-in:streetNumber kyc-fill-in:postalCode kyc-fill-in:region kyc-fill-in:locality kyc-fill-in:country kyc-fill-in:houseNumberExtension kyc-fill-in:birthdate kyc-fill-in:email kyc-fill-in:gender kyc-fill-in:cityOfBirth kyc-fill-in:countryOfBirth kyc-fill-in:nationality`
 
+    ### Note on the scope 'kyc-fill-in:phoneNumber'
+
+    An API consumer may already possess the end user's phone number before calling this API (e.g., when using CIBA for authentication). However, to receive the `phoneNumber` in the API response, the API consumer must include the `kyc-fill-in:phoneNumber` scope in the token request, even if they already know the value.
+
     ## Resources and Operations overview
 
     The API provides the following endpoint:
@@ -100,7 +104,7 @@ servers:
         description: API root, defined by the service provider, e.g. `api.example.com` or `api.example.com/somepath`
 
 tags:
-  - name: Fill-in
+  - name: Retrieve Subscriber Information
     description: Operations to provide information related to a customer identity stored the account data bound to the customer's phone number.
 
 paths:
@@ -236,6 +240,8 @@ paths:
           $ref: '#/components/responses/Generic404'
         "422":
           $ref: '#/components/responses/Generic422'
+        "429":
+          $ref: '../common/CAMARA_common.yaml#/components/responses/TooManyRequests429'
 
 components:
   securitySchemes:
