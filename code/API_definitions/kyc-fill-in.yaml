@@ -114,7 +114,7 @@ paths:
   /fill-in:
     post:
       tags:
-        - Fill-in
+        - Retrieve Subscriber Information
       summary: Providing information related to a customer identity stored the account data bound to the customer's phone number.
       description: |
         Provides information related to a customer identity stored the account data bound to the customer's phone number.
