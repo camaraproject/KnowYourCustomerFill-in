@@ -38,7 +38,7 @@ info:
 
     An API consumer may already possess the end user's phone number before calling this API (e.g., when using CIBA for authentication). However, to receive the `phoneNumber` in the API response, the API consumer MUST include the `kyc-fill-in:phoneNumber` scope in the token request, even if they already know the value.
 
-    This scope MUST only be allowed in 2-legged (client credentials) flows. Using it in a 3-legged flow is not permitted, as it would replicate the functionality of the CAMARA Number Verification API (https://github.com/camaraproject/NumberVerification/) (`phoneNumberShare` operationId scope) without the appropriate authorisation.
+    This scope MUST only be allowed in 2-legged (client credentials) flows. Using it in a 3-legged flow is not permitted, as it would replicate the functionality of the [CAMARA Number Verification API](https://github.com/camaraproject/NumberVerification/) (`phoneNumberShare` operationId scope) without the appropriate authorisation.
 
     ## Resources and Operations overview
 
