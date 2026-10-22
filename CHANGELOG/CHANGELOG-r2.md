@@ -63,7 +63,6 @@ Changes documented below are compared to version 0.5.0-rc.1.
 ### Added
 
 * Documented the `429 TOO_MANY_REQUESTS` error response by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70
-* Documented that the scope `kyc-fill-in:phoneNumber` is required to receive `phoneNumber` in the response, even if the API consumer already knows it, and that it is only allowed in 2-legged flows by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71
 
 ### Changed
 
