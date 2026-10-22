@@ -94,6 +94,19 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     And the response body complies with the OAS schema at "#/components/schemas/KycFillinResponse"
     And the response body only contains the property "$.phoneNumber" if it is available
 
+  @kyc-fill-in_05_phoneNumber_scope_ignored_in_3-legged
+  Scenario: Validate that "phoneNumber" is not returned when a 3-legged access token has the "kyc-fill-in:phoneNumber" scope
+    Given a valid testing phone number supported by the service, identified by the access token
+    And the header "Authorization" is set to a valid 3-legged access token
+    And the access token contains the scope "kyc-fill-in:phoneNumber"
+    And the request body does not include the property "$.phoneNumber"
+    When the request "kycFillin" is sent
+    Then the response status code is 200
+    And the response header "Content-Type" is "application/json"
+    And the response header "x-correlator" has same value as the request header "x-correlator"
+    And the response body complies with the OAS schema at "#/components/schemas/KycFillinResponse"
+    And the response body does not contain the property "$.phoneNumber"
+
     # Generic 400 errors
 
   @kyc-fill-in_kycFillin_400.01_schema_not_compliant
@@ -206,18 +219,6 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
   Scenario: "/fill-in" not accessible to the API client given in the access token
     # To test this, a token has to be obtained for a different client
     Given the header "Authorization" is set to a valid access token emitted to an API client which did not have rights to access/manage the "/fill-in"
-    When the request "kycFillin" is sent
-    Then the response status code is 403
-    And the response header "x-correlator" has same value as the request header "x-correlator"
-    And the response header "Content-Type" is "application/json"
-    And the response property "$.status" is 403
-    And the response property "$.code" is "PERMISSION_DENIED"
-    And the response property "$.message" contains a user friendly text
-
-  @kyc-fill-in_kycFillin_403.03_phoneNumber_scope_in_3-legged_access_token
-  Scenario: "kyc-fill-in:phoneNumber" scope in a 3-legged access token
-    Given the header "Authorization" is set to a valid 3-legged access token that contains the scope "kyc-fill-in:phoneNumber"
-    And the request body does not include the property "$.phoneNumber"
     When the request "kycFillin" is sent
     Then the response status code is 403
     And the response header "x-correlator" has same value as the request header "x-correlator"
