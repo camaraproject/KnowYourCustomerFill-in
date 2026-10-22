@@ -42,7 +42,7 @@ info:
 
     This scope MUST only be allowed in 2-legged (client credentials) flows. Using it in a 3-legged flow is not permitted and has no effect, as it would replicate the functionality of the [CAMARA Number Verification API](https://github.com/camaraproject/NumberVerification/) (`phoneNumberShare` operationId scope) without the appropriate authorisation.
 
-    If the API is invoked with a 3-legged access token that contains the scope `kyc-fill-in:phoneNumber` or `kyc-fill-in:set-all`, the request is processed and `phoneNumber` is not returned in the response, even if the scope is present. The scope has no effect in 3-legged flows, so the API provider does not return an error for it.
+    If the API is invoked with a 3-legged access token that contains the scope `kyc-fill-in:phoneNumber` or `kyc-fill-in:set-all`, the request is processed and `phoneNumber` is not returned in the response.
 
     ## Resources and Operations overview
 

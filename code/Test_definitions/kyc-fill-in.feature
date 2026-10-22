@@ -92,11 +92,11 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     And the response body complies with the OAS schema at "#/components/schemas/KycFillinResponse"
     And the response body only contains the property "$.phoneNumber" if it is available
 
-  @kyc-fill-in_05_phoneNumber_scope_ignored_in_3-legged
+  @kyc-fill-in_05_success_request_phoneNumber_scope_3-legged
   Scenario: Validate that "phoneNumber" is not returned when a 3-legged access token has the "kyc-fill-in:phoneNumber" scope
     Given a valid testing phone number supported by the service, identified by the access token
     And the header "Authorization" is set to a valid 3-legged access token
-    And the access token contains the scope "kyc-fill-in:phoneNumber"
+    And the access token contains the scope "kyc-fill-in:phoneNumber" and does not contain the "kyc-fill-in:set-all" scope
     And the request body does not include the property "$.phoneNumber"
     When the request "kycFillin" is sent
     Then the response status code is 200
@@ -116,7 +116,7 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     And the response header "Content-Type" is "application/json"
     And the response header "x-correlator" has same value as the request header "x-correlator"
     And the response body complies with the OAS schema at "#/components/schemas/KycFillinResponse"
-    And the response body contains all the available properties defined in the schema except "$.phoneNumber"
+    And the response body contains all the available properties defined in the schema
     And the response body does not contain the property "$.phoneNumber"
 
     # Generic 400 errors
