@@ -66,7 +66,9 @@ Changes documented below are compared to version 0.5.0-rc.1.
 
 ### Changed
 
-* N/A
+* Updated the release plan to align the API with Commonalities r4.4 and the release tag with r2.2 by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/66
+* Aligned the API definition and test definitions with Commonalities r4.4: error responses now use the shared Commonalities definitions (some example messages were reworded), and test scenarios were renamed and extended by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70
+* Renamed the OpenAPI tag `Fill-in` to `Retrieve Subscriber Information` by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71
 
 ### Fixed
 
