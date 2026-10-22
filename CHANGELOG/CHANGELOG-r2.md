@@ -66,8 +66,8 @@ Changes documented below are compared to version 0.5.0-rc.1.
 
 ### Changed
 
-* Updated the release plan to align the API with Commonalities r4.4 and the release tag with r2.2 by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/66
-* Aligned the API definition and test definitions with Commonalities r4.4: error responses now use the shared Commonalities definitions (some example messages were reworded), and test scenarios were renamed and extended by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70
+* Aligned with Commonalities r4.4: error responses use the Commonalities response and example definitions (status and error codes unchanged, example messages reworded), and test definitions were aligned with the testing guidelines (renamed scenario tags, new 400, 401, 403 and 429 scenarios) by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70
+* Restricted the scope `kyc-fill-in:phoneNumber` to 2-legged flows, and documented that it is required to receive `phoneNumber` in the response even if the API consumer already knows the value by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71
 * Renamed the OpenAPI tag `Fill-in` to `Retrieve Subscriber Information` by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71
 
 ### Fixed
