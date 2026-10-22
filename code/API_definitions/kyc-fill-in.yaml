@@ -34,11 +34,15 @@ info:
 
     `kyc-fill-in:phoneNumber kyc-fill-in:idDocument kyc-fill-in:idDocumentType kyc-fill-in:idDocumentExpiryDate kyc-fill-in:bankAccountNumber kyc-fill-in:name kyc-fill-in:givenName kyc-fill-in:familyName kyc-fill-in:nameKanaHankaku kyc-fill-in:nameKanaZenkaku kyc-fill-in:middleNames kyc-fill-in:familyNameAtBirth kyc-fill-in:address kyc-fill-in:streetName kyc-fill-in:streetNumber kyc-fill-in:postalCode kyc-fill-in:region kyc-fill-in:locality kyc-fill-in:country kyc-fill-in:houseNumberExtension kyc-fill-in:birthdate kyc-fill-in:email kyc-fill-in:gender kyc-fill-in:cityOfBirth kyc-fill-in:countryOfBirth kyc-fill-in:nationality`
 
+    In 3-legged flows, `kyc-fill-in:set-all` does not include `kyc-fill-in:phoneNumber`: the response contains all the other available properties and does not contain `phoneNumber` (see the note below).
+
     ### Note on the scope 'kyc-fill-in:phoneNumber'
 
     An API consumer may already possess the end user's phone number before calling this API (e.g., when using CIBA for authentication). However, to receive the `phoneNumber` in the API response, the API consumer MUST include the `kyc-fill-in:phoneNumber` scope in the token request, even if they already know the value.
 
     This scope MUST only be allowed in 2-legged (client credentials) flows. Using it in a 3-legged flow is not permitted, as it would replicate the functionality of the [CAMARA Number Verification API](https://github.com/camaraproject/NumberVerification/) (`phoneNumberShare` operationId scope) without the appropriate authorisation.
+
+    If the API is invoked with a 3-legged access token that contains the scope `kyc-fill-in:phoneNumber`, the API provider MUST reject the request with `403 PERMISSION_DENIED`. If the 3-legged access token contains `kyc-fill-in:set-all` and not `kyc-fill-in:phoneNumber`, the request is processed and `phoneNumber` is not returned.
 
     ## Resources and Operations overview
 
@@ -47,6 +51,7 @@ info:
     * An endpoint to request information related to an end user against the account data bound to their phone number.
 
     <!-- CAMARA:MANDATORY:authorization-and-authentication:BEGIN -->
+
     # Authorization and authentication
 
     The "Camara Security and Interoperability Profile" provides details of how an API consumer requests an access token. Please refer to Identity and Consent Management (https://github.com/camaraproject/IdentityAndConsentManagement/) for the released version of the profile.
@@ -82,6 +87,7 @@ info:
     <!-- CAMARA:MANDATORY:additional-error-responses:END -->
 
     <!-- CAMARA:MANDATORY:request-body-strictness:BEGIN -->
+
     # Request body strictness
 
     This API rejects requests with JSON request bodies that contain properties not declared in this specification, at any nesting level. Unknown properties result in a `400 INVALID_ARGUMENT` response.
