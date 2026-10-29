@@ -40,9 +40,9 @@ Incubating API Repository to evolve and maintain the definitions and documentati
 
 ### Upcoming Release Preview
 
-* Pre-release: [r2.1](https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.1) (release candidate)
-  * **kyc-fill-in 0.5.0-rc.1**
-  [[YAML]](https://github.com/camaraproject/KnowYourCustomerFill-in/blob/r2.1/code/API_definitions/kyc-fill-in.yaml)  [[ReDoc]](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/KnowYourCustomerFill-in/r2.1/code/API_definitions/kyc-fill-in.yaml&nocors)  [[Swagger]](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/KnowYourCustomerFill-in/r2.1/code/API_definitions/kyc-fill-in.yaml)
+* Pre-release: [r2.2](https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.2) (release candidate)
+  * **kyc-fill-in 0.5.0-rc.2**
+  [[YAML]](https://github.com/camaraproject/KnowYourCustomerFill-in/blob/r2.2/code/API_definitions/kyc-fill-in.yaml)  [[ReDoc]](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/KnowYourCustomerFill-in/r2.2/code/API_definitions/kyc-fill-in.yaml&nocors)  [[Swagger]](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/KnowYourCustomerFill-in/r2.2/code/API_definitions/kyc-fill-in.yaml)
 
 
 _The above section is automatically synchronized by CAMARA project-administration._
