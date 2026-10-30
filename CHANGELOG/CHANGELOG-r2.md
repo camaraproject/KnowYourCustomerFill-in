@@ -36,11 +36,7 @@ The API definition(s) are based on
 <summary>Candidate changes (auto-generated from merged PRs)</summary>
 
 ## What's Changed
-* Release Automation: Post-release sync (r2.1) by @camara-release-automation[bot] in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/65
-* Update release-plan to Commonalities r4.4 and align release tag to r2.2 by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/66
-* Sync common files from Commonalities r4.4 by @camara-release-automation[bot] in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/67
 * Commonalities r4.4 alignment by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70
-* chore: remove obsolete v0 validation caller workflows by @hdamker in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/72
 * Review_documentation_r2.1 by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71
 * Fix r2.2 review findings: 2-legged-only phoneNumber, test defects and P-027 warnings (#75, #76, #78) by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
 
@@ -64,15 +60,17 @@ Changes documented below are compared to version 0.5.0-rc.1.
 
 ### Breaking changes
 
-* N/A
+* The scope `kyc-fill-in:phoneNumber` is restricted to 2-legged (client credentials) flows and is no longer permitted in 3-legged flows by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71
 
 ### Added
 
-* N/A
+* Documented the `429 TOO_MANY_REQUESTS` error response by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70
 
 ### Changed
 
-* N/A
+* Aligned with Commonalities r4.4: error responses use the Commonalities response and example definitions (status and error codes unchanged, example messages reworded), and test definitions were aligned with the testing guidelines (renamed scenario tags, new 400, 401, 403 and 429 scenarios) by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70
+* Restricted the scope `kyc-fill-in:phoneNumber` to 2-legged flows, and documented that it is required to receive `phoneNumber` in the response even if the API consumer already knows the value by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71
+* Renamed the OpenAPI tag `Fill-in` to `Retrieve Subscriber Information` by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71
 
 ### Fixed
 
