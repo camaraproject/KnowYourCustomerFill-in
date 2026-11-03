@@ -71,9 +71,6 @@ Changes documented below are compared to version 0.5.0-rc.1.
 * Aligned with Commonalities r4.4: error responses use the Commonalities response and example definitions (status and error codes unchanged, example messages reworded), and test definitions were aligned with the testing guidelines (renamed scenario tags, new 400, 401, 403 and 429 scenarios) by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70
 * Restricted the scope `kyc-fill-in:phoneNumber` to 2-legged flows: with a 3-legged access token carrying `kyc-fill-in:phoneNumber` or `kyc-fill-in:set-all`, the request is processed and `phoneNumber` is not returned. Documented that the scope is required to receive `phoneNumber` even if the API consumer already knows the value. The test scenarios for both scopes now cover 2-legged and 3-legged access tokens separately by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71 and @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
 * Renamed the OpenAPI tag `Fill-in` to `Retrieve Subscriber Information` by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71
-* Specified the 2-legged-only restriction of the `kyc-fill-in:phoneNumber` scope as below by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79:
-  - The API description now states the observable behaviour: a 3-legged access token carrying `kyc-fill-in:phoneNumber` or `kyc-fill-in:set-all` is processed and `phoneNumber` is not returned (200, no error)
-  - In the test definitions, the `phoneNumber` cases of scenario `04` are limited to 2-legged tokens, and the `set-all` and `phoneNumber` scenarios are split by token type: `02` and `03` for set-all (2-legged and 3-legged), `05` and `06` for `phoneNumber` (2-legged and 3-legged, where `phoneNumber` is not returned). 
 
 ### Fixed
 
