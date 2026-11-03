@@ -60,7 +60,7 @@ Changes documented below are compared to version 0.5.0-rc.1.
 
 ### Breaking changes
 
-* The scope `kyc-fill-in:phoneNumber` is restricted to 2-legged (client credentials) flows and is no longer permitted in 3-legged flows by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71 and by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
+* With a 3-legged access token, `phoneNumber` is no longer returned: the scope `kyc-fill-in:phoneNumber` is only allowed in 2-legged (client credentials) flows, and `kyc-fill-in:set-all` does not include it in 3-legged flows. The request is processed and the response does not contain `phoneNumber` by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71 and @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
 
 ### Added
 
