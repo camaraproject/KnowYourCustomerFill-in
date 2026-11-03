@@ -75,11 +75,7 @@ Changes documented below are compared to version 0.5.0-rc.1.
 ### Fixed
 
 * The headings `Authorization and authentication` and `Request body strictness` in the API description now render in Swagger Editor (blank line added after the template markers) by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
-* Fixed test definition defects as blow by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79:
-  - use `#/components/schemas/KycFillinResponse`
-  - remove the resource override in scenario `01`
-  - fix the tag of scenario `04`
-  - retitle scenario `403.02` for `/fill-in`
+* Test definitions: the success scenarios reference `#/components/schemas/KycFillinResponse`, and scenario `01` uses the resource path from the Background by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
 
 ### Removed
 
