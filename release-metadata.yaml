@@ -2,7 +2,7 @@ repository:
   repository_name: KnowYourCustomerFill-in
   release_tag: r2.2
   release_type: pre-release-rc
-  release_date: null
+  release_date: '2026-11-04T08:27:06Z'
   src_commit_sha: 88bd0a765729744c74201977e8f37a4ea7682435
 apis:
 - api_name: kyc-fill-in
