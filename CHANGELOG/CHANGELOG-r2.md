@@ -37,29 +37,17 @@ The API definition(s) are based on
 <summary>Candidate changes (auto-generated from merged PRs)</summary>
 
 ## What's Changed
-* [bulk] Sync Release Information section (2026-01-07-001) by @hdamker-bot in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/42
-* Reset api and test code version information in main branch to wip by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/43
-* [bulk] Add release-plan.yaml (2026-02-23-001) by @hdamker-bot in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/44
-* [bulk] Enable release automation and validation by @camara-release-automation[bot] in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/48
 * Remove flows image from yaml file by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/46
-* prepare kyc-fill-in release plan for rc by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/52
-* Sync common files from Commonalities r4.3 by @camara-release-automation[bot] in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/53
 * Commonalities 8.0.0 alignment and fix validation warnings by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/57
 * Add bankAccountNumber as an optional property to KYC Fill-in by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/61
 * [KYC Fill-in] Another update to fix validation warnings by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/59
-* Release Automation: Post-release sync (r2.1) by @camara-release-automation[bot] in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/65
 * Update release-plan to Commonalities r4.4 and align release tag to r2.2 by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/66
-* Sync common files from Commonalities r4.4 by @camara-release-automation[bot] in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/67
 * Commonalities r4.4 alignment by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70
-* chore: remove obsolete v0 validation caller workflows by @hdamker in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/72
 * Review_documentation_r2.1 by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71
 * Fix r2.2 review findings: 2-legged-only phoneNumber, test defects and P-027 warnings (#75, #76, #78) by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
-* Release Automation: Post-release sync (r2.2) by @camara-release-automation[bot] in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/82
-* Update release-plan for KnowYourCustomerFill-in (r2.3 Sync26 public release) by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/83
 
 ## New Contributors
 * @GillesInnov35 made their first contribution in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/46
-* @hdamker made their first contribution in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/72
 * @albertoramosmonagas made their first contribution in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
 
 </details>
