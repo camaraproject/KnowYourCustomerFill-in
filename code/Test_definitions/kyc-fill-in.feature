@@ -1,4 +1,4 @@
-Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
+Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation kycFillin
 
 # Input to be provided by the implementation to the tester
 #
@@ -11,7 +11,7 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
 #
 # References to OAS spec schemas refer to schemas specifies in kyc-fill-in.yaml
 
-  Background: Common KYC_Fill-in_API setup
+  Background: Common kycFillin API setup
     Given an environment at "apiRoot"
     And the resource "/kyc-fill-in/vwip/fill-in"
     And the header "Content-Type" is set to "application/json"
@@ -23,7 +23,7 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     # Happy path scenarios for fill-in operation
     ############################################
 
-  @kyc-fill-in_01_success_request_response
+  @kyc-fill-in_kycFillin_01_success_request_response
   Scenario: Validation for success fill-in request and response scenario
     Given a valid testing phone number supported by the service, identified by the access token or provided in the request body
     When the request "kycFillin" is sent
@@ -32,7 +32,7 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     And the response header "x-correlator" has same value as the request header "x-correlator"
     And the response body complies with the OAS schema at "#/components/schemas/KycFillinResponse"
 
-  @kyc-fill-in_02_success_request_set-all_scope_2-legged
+  @kyc-fill-in_kycFillin_02_success_request_set-all_scope_2-legged
   Scenario: Validate successful response when a 2-legged access token has the "kyc-fill-in:set-all" scope
     Given a valid testing phone number supported by the service, provided in the request body
     And the header "Authorization" is set to a valid 2-legged access token with the "kyc-fill-in:set-all" scope
@@ -43,7 +43,7 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     And the response body complies with the OAS schema at "#/components/schemas/KycFillinResponse"
     And the response body contains all the available properties defined in the schema
 
-  @kyc-fill-in_03_success_request_set-all_scope_3-legged
+  @kyc-fill-in_kycFillin_03_success_request_set-all_scope_3-legged
   Scenario: Validate that "phoneNumber" is not returned when a 3-legged access token has the "kyc-fill-in:set-all" scope
     # "kyc-fill-in:set-all" does not include "kyc-fill-in:phoneNumber" in 3-legged flows
     Given a valid testing phone number supported by the service, identified by the access token
@@ -57,9 +57,9 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     And the response body contains all the available properties defined in the schema
     And the response body does not contain the property "$.phoneNumber"
 
-  @kyc-fill-in_04_success_request_individual_scopes
+  @kyc-fill-in_kycFillin_04_success_request_individual_scopes
   Scenario: Validate successful response when the access token has individual scopes
-    Given a valid testing phone number supported by the service, identified by the access token or provided in the request body
+    Given a valid testing phone number supported by the service, identified by the access token (3-legged) or provided in the request body (2-legged)
     And the header "Authorization" is set to a valid access token
     And the access token contains the scope "<scope>" and does not contain the "kyc-fill-in:set-all" scope
     When the request "kycFillin" is sent
@@ -70,6 +70,7 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     Examples:
       | scope                            | response_body_property |
       | kyc-fill-in:address              | $.address              |
+      | kyc-fill-in:bankAccountNumber    | $.bankAccountNumber    |
       | kyc-fill-in:birthdate            | $.birthdate            |
       | kyc-fill-in:cityOfBirth          | $.cityOfBirth          |
       | kyc-fill-in:country              | $.country              |
@@ -94,7 +95,7 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
       | kyc-fill-in:streetName           | $.streetName           |
       | kyc-fill-in:streetNumber         | $.streetNumber         |
 
-  @kyc-fill-in_05_success_request_phoneNumber_scope_2-legged
+  @kyc-fill-in_kycFillin_05_success_request_phoneNumber_scope_2-legged
   Scenario: Validate successful response when a 2-legged access token has the "kyc-fill-in:phoneNumber" scope
     Given a valid testing phone number supported by the service, provided in the request body
     And the header "Authorization" is set to a valid 2-legged access token
@@ -106,7 +107,7 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     And the response body complies with the OAS schema at "#/components/schemas/KycFillinResponse"
     And the response body only contains the property "$.phoneNumber" if it is available
 
-  @kyc-fill-in_06_success_request_phoneNumber_scope_3-legged
+  @kyc-fill-in_kycFillin_06_success_request_phoneNumber_scope_3-legged
   Scenario: Validate that "phoneNumber" is not returned when a 3-legged access token has the "kyc-fill-in:phoneNumber" scope
     Given a valid testing phone number supported by the service, identified by the access token
     And the header "Authorization" is set to a valid 3-legged access token
@@ -148,9 +149,26 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     Given the header "x-correlator" does not comply with the schema at "#/components/schemas/XCorrelator"
     When the request "kycFillin" is sent
     Then the response status code is 400
+    And the response header "Content-Type" is "application/json"
     And the response property "$.status" is 400
     And the response property "$.code" is "INVALID_ARGUMENT"
     And the response property "$.message" contains a user friendly text
+
+  @kyc-fill-in_kycFillin_400.09_request_body_strictness
+  Scenario Outline: Undeclared property in request body
+    Given the request body is set to a valid request body
+    And the request body includes the property "<undeclared_property>" which is not declared in the schema at "#/components/schemas/KycFillinRequest"
+    When the request "kycFillin" is sent
+    Then the response status code is 400
+    And the response header "Content-Type" is "application/json"
+    And the response header "x-correlator" has same value as the request header "x-correlator"
+    And the response property "$.status" is 400
+    And the response property "$.code" is "INVALID_ARGUMENT"
+    And the response property "$.message" contains a user friendly text
+
+    Examples:
+      | undeclared_property  |
+      | $.undeclaredProperty |
 
     # Generic 401 errors
 
@@ -195,6 +213,7 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
       | scope                            |
       | kyc-fill-in:set-all              |
       | kyc-fill-in:address              |
+      | kyc-fill-in:bankAccountNumber    |
       | kyc-fill-in:birthdate            |
       | kyc-fill-in:cityOfBirth          |
       | kyc-fill-in:country              |
@@ -249,61 +268,73 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation KYC_Fill-in
     And the threshold of requests has been reached
     When the request "kycFillin" is sent
     Then the response status code is 429
+    And the response header "x-correlator" has same value as the request header "x-correlator"
+    And the response header "Content-Type" is "application/json"
     And the response property "$.status" is 429
     And the response property "$.code" is "TOO_MANY_REQUESTS"
     And the response property "$.message" contains a user friendly text
 
     # Error scenarios for management of input parameter phoneNumber
 
-  @kyc-fill-in_C02.01_phone_number_not_schema_compliant
+  @kyc-fill-in_kycFillin_C02.01_phone_number_not_schema_compliant
   Scenario: Phone number value does not comply with the schema
     Given the header "Authorization" is set to a valid access token which does not identify a single phone number
     And the request body property "$.phoneNumber" does not comply with the OAS schema at "#/components/schemas/PhoneNumber"
     When the request "kycFillin" is sent
     Then the response status code is 400
+    And the response header "x-correlator" has same value as the request header "x-correlator"
+    And the response header "Content-Type" is "application/json"
     And the response property "$.status" is 400
     And the response property "$.code" is "INVALID_ARGUMENT"
     And the response property "$.message" contains a user friendly text
 
 # Typically with a 2-legged access token
-  @kyc-fill-in_C02.02_phone_number_not_found
+  @kyc-fill-in_kycFillin_C02.02_phone_number_not_found
   Scenario: Phone number not found
     Given the header "Authorization" is set to a valid access token which does not identify a single phone number
     And the request body property "$.phoneNumber" is compliant with the schema but does not identify a valid phone number
     When the request "kycFillin" is sent
     Then the response status code is 404
+    And the response header "x-correlator" has same value as the request header "x-correlator"
+    And the response header "Content-Type" is "application/json"
     And the response property "$.status" is 404
     And the response property "$.code" is "IDENTIFIER_NOT_FOUND"
     And the response property "$.message" contains a user friendly text
 
 # Only with a 3-legged access token
-  @kyc-fill-in_C02.03_unnecessary_phone_number
+  @kyc-fill-in_kycFillin_C02.03_unnecessary_phone_number
   Scenario: Phone number not to be included when it can be deduced from the access token
     Given the header "Authorization" is set to a valid access token identifying a phone number
     And  the request body property "$.phoneNumber" is set to a valid phone number
     When the request "kycFillin" is sent
     Then the response status code is 422
+    And the response header "x-correlator" has same value as the request header "x-correlator"
+    And the response header "Content-Type" is "application/json"
     And the response property "$.status" is 422
     And the response property "$.code" is "UNNECESSARY_IDENTIFIER"
     And the response property "$.message" contains a user friendly text
 
-  @kyc-fill-in_C02.04_missing_phone_number
+  @kyc-fill-in_kycFillin_C02.04_missing_phone_number
   Scenario: Phone number not included and cannot be deduced from the access token
     Given the header "Authorization" is set to a valid access token which does not identify a single phone number
     And the request body property "$.phoneNumber" is not included
     When the request "kycFillin" is sent
     Then the response status code is 422
+    And the response header "x-correlator" has same value as the request header "x-correlator"
+    And the response header "Content-Type" is "application/json"
     And the response property "$.status" is 422
     And the response property "$.code" is "MISSING_IDENTIFIER"
     And the response property "$.message" contains a user friendly text
 
     # When the service is only offered to certain type of subscriptions, e.g. IoT, , B2C, etc
-  @kyc-fill-in_C02.05_phone_number_not_supported
+  @kyc-fill-in_kycFillin_C02.05_phone_number_not_supported
   Scenario: Service not available for the phone number
     Given that the service is not available for all phone numbers commercialized by the operator
     And a valid phone number, identified by the token or provided in the request body, for which the service is not applicable
     When the request "kycFillin" is sent
     Then the response status code is 422
+    And the response header "x-correlator" has same value as the request header "x-correlator"
+    And the response header "Content-Type" is "application/json"
     And the response property "$.status" is 422
     And the response property "$.code" is "SERVICE_NOT_APPLICABLE"
     And the response property "$.message" contains a user friendly text
