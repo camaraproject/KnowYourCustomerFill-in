@@ -75,7 +75,13 @@ Changes documented below are compared to version 0.4.1.
 
 ### Changed
 
-* N/A
+* Aligned with Commonalities r4.4 (0.9.0) by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/57 and https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70:
+  * Error responses use the Commonalities response and example definitions (status and error codes unchanged, example messages reworded)
+  * Added `maxLength`, `minLength`, `pattern` and `format` constraints to request and response properties, in line with the formats already documented (for example `phoneNumber` up to 16 characters, country codes as ISO 3166-1 alpha-2)
+  * Documented the request body strictness rule: requests containing properties not declared in the specification are rejected with `400 INVALID_ARGUMENT`
+  * Aligned the test definitions with the testing guidelines (renamed scenario tags, new 400, 401, 403 and 429 scenarios)
+* Restricted the scope `kyc-fill-in:phoneNumber` to 2-legged flows: with a 3-legged access token carrying `kyc-fill-in:phoneNumber` or `kyc-fill-in:set-all`, the request is processed and `phoneNumber` is not returned. Documented that the scope is required to receive `phoneNumber` even if the API consumer already knows the value. The test scenarios for both scopes cover 2-legged and 3-legged access tokens separately by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71 and @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
+* Renamed the `operationId` from `KYC_Fill-in` to `kycFillin`, the schemas `KYC_FillinRequest` and `KYC_FillinResponse` to `KycFillinRequest` and `KycFillinResponse`, and the OpenAPI tag `Fill-in` to `Retrieve Subscriber Information` (no change to paths, methods or payloads) by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/59 and https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71 and @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/57
 
 ### Fixed
 
