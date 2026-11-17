@@ -89,7 +89,7 @@ Changes documented below are compared to version 0.4.1.
 
 ### Removed
 
-* N/A
+* Removed the high-level flow figure from the API description by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/46
 
 **Full Changelog**: https://github.com/camaraproject/KnowYourCustomerFill-in/compare/r1.3...r2.3
 
