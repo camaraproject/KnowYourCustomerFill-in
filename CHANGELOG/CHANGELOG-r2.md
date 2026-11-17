@@ -85,7 +85,7 @@ Changes documented below are compared to version 0.4.1.
 
 ### Fixed
 
-* N/A
+* Test definitions: the success scenarios reference `#/components/schemas/KycFillinResponse`, and scenario `01` uses the resource path from the Background by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
 
 ### Removed
 
