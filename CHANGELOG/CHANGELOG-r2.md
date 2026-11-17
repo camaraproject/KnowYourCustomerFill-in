@@ -70,7 +70,8 @@ Changes documented below are compared to version 0.4.1.
 
 ### Added
 
-* N/A
+* Added the optional response property `bankAccountNumber` and the scope `kyc-fill-in:bankAccountNumber`; `kyc-fill-in:set-all` now includes the new scope by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/61
+* Documented the `429 TOO_MANY_REQUESTS` error response by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70
 
 ### Changed
 
