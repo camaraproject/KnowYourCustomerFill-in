@@ -1,4 +1,4 @@
-Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation kycFillin
+Feature: CAMARA Know Your Customer Fill-in API, v0.5.0 - Operation kycFillin
 
 # Input to be provided by the implementation to the tester
 #
@@ -13,7 +13,7 @@ Feature: CAMARA Know Your Customer Fill-in API, vwip - Operation kycFillin
 
   Background: Common kycFillin API setup
     Given an environment at "apiRoot"
-    And the resource "/kyc-fill-in/vwip/fill-in"
+    And the resource "/kyc-fill-in/v0.5/fill-in"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
