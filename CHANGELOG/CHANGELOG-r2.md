@@ -71,12 +71,8 @@ Changes documented below are compared to version 0.4.1.
 
 ### Added
 
-* Added the optional response property `bankAccountNumber` and the scope `kyc-fill-in:bankAccountNumber`; `kyc-fill-in:set-all` now includes the new scope by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/61
+* Added the optional response property `bankAccountNumber` and the scope `kyc-fill-in:bankAccountNumber`; `kyc-fill-in:set-all` now includes the new scope by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/61. The test definitions cover the new scope in scenarios `04` and `403.01` by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/90
 * Documented the `429 TOO_MANY_REQUESTS` error response by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70
-* Additions listed below were made in the API description by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/90:
-  * `bankAccountNumber` was added and is now addressed in scenarios `04` and `403.01`.
-  * Added the `x-correlator` and `Content-Type` checks to some of the remaining error scenarios.
-  * Added test scenario `400.09` (unknown request body properties).
 
 ### Changed
 
