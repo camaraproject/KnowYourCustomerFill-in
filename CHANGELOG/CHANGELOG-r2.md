@@ -45,6 +45,7 @@ The API definition(s) are based on
 * Commonalities r4.4 alignment by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70
 * Review_documentation_r2.1 by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71
 * Fix r2.2 review findings: 2-legged-only phoneNumber, test defects and P-027 warnings (#75, #76, #78) by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
+* Fix r2.3 release review findings in test definitions and API documentation (#86) by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/90
 
 ## New Contributors
 * @GillesInnov35 made their first contribution in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/46
@@ -72,6 +73,10 @@ Changes documented below are compared to version 0.4.1.
 
 * Added the optional response property `bankAccountNumber` and the scope `kyc-fill-in:bankAccountNumber`; `kyc-fill-in:set-all` now includes the new scope by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/61
 * Documented the `429 TOO_MANY_REQUESTS` error response by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70
+* Additions listed below were made in the API description by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/90:
+  * `bankAccountNumber` was added and is now addressed in scenarios `04` and `403.01`.
+  * Added the `x-correlator` and `Content-Type` checks to some of the remaining error scenarios.
+  * Added test scenario `400.09` (unknown request body properties).
 
 ### Changed
 
@@ -82,10 +87,15 @@ Changes documented below are compared to version 0.4.1.
   * Aligned the test definitions with the testing guidelines (renamed scenario tags, new 400, 401, 403 and 429 scenarios)
 * Restricted the scope `kyc-fill-in:phoneNumber` to 2-legged flows: with a 3-legged access token carrying `kyc-fill-in:phoneNumber` or `kyc-fill-in:set-all`, the request is processed and `phoneNumber` is not returned. Documented that the scope is required to receive `phoneNumber` even if the API consumer already knows the value. The test scenarios for both scopes cover 2-legged and 3-legged access tokens separately by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71 and @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
 * Renamed the `operationId` from `KYC_Fill-in` to `kycFillin`, the schemas `KYC_FillinRequest` and `KYC_FillinResponse` to `KycFillinRequest` and `KycFillinResponse`, and the OpenAPI tag `Fill-in` to `Retrieve Subscriber Information` (no change to paths, methods or payloads) by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/59 and https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71 and @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/57
+* The changes listed below were made in the API description for Commonalities r4.4 alignment by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/90:
+  * Mandatory template markers were added to `Identifying the phone number from access token` section.
+  * Two example names (identifiers) were changed (`KYC_FillInBodyExample` -> `KycFillinBodyExample`, `KYC_Fillin200Example` -> `KycFillin200Example`).
+* In the test scenarios, the `operationId` `kycFillin` is now used, and the scenarios were renamed using a single feature identifier in the scenario tags by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/90
 
 ### Fixed
 
 * Test definitions: the success scenarios reference `#/components/schemas/KycFillinResponse`, and scenario `01` uses the resource path from the Background by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
+* Some minor typos and wordings were corrected in the API description by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/90
 
 ### Removed
 
