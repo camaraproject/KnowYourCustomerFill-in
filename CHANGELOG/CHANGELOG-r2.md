@@ -88,7 +88,7 @@ Changes documented below are compared to version 0.4.1.
 ### Fixed
 
 * Test definitions: the success scenarios reference `#/components/schemas/KycFillinResponse`, and scenario `01` uses the resource path from the Background by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
-* Some minor typos and wordings were corrected in the API description by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/90
+* Corrected typos and wording in the API description, including the `nationality` description, which referred to the ID document of a match request by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/90
 
 ### Removed
 
