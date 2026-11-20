@@ -2,6 +2,7 @@
 
 <!-- TOC:START -->
 ## Table of Contents
+- **[r2.3](#r23)**
 - [r2.2](#r22)
 - [r2.1](#r21)
 <!-- TOC:END -->
@@ -14,6 +15,59 @@ The below sections record the changes for each API version in each release as fo
 * for the first release-candidate, all changes since the last public release
 * for subsequent release-candidate(s), only the delta to the previous release-candidate
 * for a public release, the consolidated changes since the previous public release
+
+# r2.3
+
+## Release Notes
+
+This public release contains the definition and documentation of
+* kyc-fill-in 0.5.0
+
+The API definition(s) are based on
+* Commonalities r4.4 (0.9.0)
+* Identity and Consent Management r4.2 (0.5.0)
+
+## kyc-fill-in 0.5.0
+
+**kyc-fill-in 0.5.0 is an initial public version of this API.**
+
+Changes documented below are compared to version 0.4.1.
+
+- API definition **with inline documentation**:
+  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/KnowYourCustomerFill-in/r2.3/code/API_definitions/kyc-fill-in.yaml&nocors)
+  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/KnowYourCustomerFill-in/r2.3/code/API_definitions/kyc-fill-in.yaml)
+  - OpenAPI [YAML spec file](https://github.com/camaraproject/KnowYourCustomerFill-in/blob/r2.3/code/API_definitions/kyc-fill-in.yaml)
+
+### Breaking changes
+
+* With a 3-legged access token, `phoneNumber` is no longer returned: the scope `kyc-fill-in:phoneNumber` is only allowed in 2-legged (client credentials) flows, and `kyc-fill-in:set-all` does not include it in 3-legged flows. The request is processed and the response does not contain `phoneNumber` by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71 and @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
+
+### Added
+
+* Added the optional response property `bankAccountNumber` and the scope `kyc-fill-in:bankAccountNumber`; `kyc-fill-in:set-all` now includes the new scope by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/61. The test definitions cover the new scope in scenarios `04` and `403.01` by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/90
+* Documented the `429 TOO_MANY_REQUESTS` error response by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70
+
+### Changed
+
+* Aligned with Commonalities r4.4 (0.9.0) by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/57 and https://github.com/camaraproject/KnowYourCustomerFill-in/pull/70 and @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/90:
+  * Error responses use the Commonalities response and example definitions (status and error codes unchanged, example messages reworded)
+  * Added `maxLength`, `minLength`, `pattern` and `format` constraints to request and response properties, in line with the formats already documented (for example `phoneNumber` up to 16 characters, country codes as ISO 3166-1 alpha-2)
+  * Documented the request body strictness rule: requests containing properties not declared in the specification are rejected with `400 INVALID_ARGUMENT`
+  * Added the template markers to the section "Identifying the phone number from the access token"
+  * Aligned the test definitions with the testing guidelines (operation `kycFillin`, one feature identifier in the scenario tags, `x-correlator` and `Content-Type` checks in the error scenarios, new 400, 401, 403 and 429 scenarios including `400.09` for unknown request body properties)
+* Restricted the scope `kyc-fill-in:phoneNumber` to 2-legged flows: with a 3-legged access token carrying `kyc-fill-in:phoneNumber` or `kyc-fill-in:set-all`, the request is processed and `phoneNumber` is not returned. Documented that the scope is required to receive `phoneNumber` even if the API consumer already knows the value. The test scenarios for both scopes cover 2-legged and 3-legged access tokens separately by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71 and @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
+* Renamed the `operationId` from `KYC_Fill-in` to `kycFillin`, the schemas `KYC_FillinRequest` and `KYC_FillinResponse` to `KycFillinRequest` and `KycFillinResponse`, the OpenAPI tag `Fill-in` to `Retrieve Subscriber Information`, and the examples `KYC_FillInBodyExample` and `KYC_Fillin200Example` to `KycFillinBodyExample` and `KycFillin200Example` (no change to paths, methods or payloads) by @ToshiWakayama-KDDI in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/59 and https://github.com/camaraproject/KnowYourCustomerFill-in/pull/71, @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/57 and @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/90
+
+### Fixed
+
+* Test definitions: the success scenarios reference `#/components/schemas/KycFillinResponse`, and scenario `01` uses the resource path from the Background by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/79
+* Corrected typos and wording in the API description, including the `nationality` description, which referred to the ID document of a match request by @albertoramosmonagas in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/90
+
+### Removed
+
+* Removed the high-level flow figure from the API description by @GillesInnov35 in https://github.com/camaraproject/KnowYourCustomerFill-in/pull/46
+
+**Full Changelog**: https://github.com/camaraproject/KnowYourCustomerFill-in/compare/r1.3...r2.3
 
 # r2.2
 
